@@ -14,6 +14,12 @@ import {
 import { useLanguage } from '@/context/LanguageContext';
 import { TempleLogo } from '@/components/TempleLogo';
 import {
+  OFFERINGS_CATALOG,
+  OFFERING_CATEGORIES,
+  TEMPLE_PHONE_INTL,
+  type OfferingItem,
+} from '@/constants/offerings';
+import {
   Flame,
   CheckCircle,
   ChevronDown,
@@ -60,97 +66,7 @@ const NAKSHATRAS = [
   { id: '27', ml: 'രേവതി', en: 'Revathi' },
 ];
 
-interface OfferingItem {
-  id: string;
-  category: string;
-  nameEn: string;
-  nameMl: string;
-  price: string;
-  priceNum: number;
-  descEn: string;
-  descMl: string;
-  image: any;
-}
 
-const OFFERINGS_CATALOG: OfferingItem[] = [
-  {
-    id: '1',
-    category: 'daily',
-    nameEn: 'Pushpanjali & Archana',
-    nameMl: 'പുഷ്പാഞ്ജലി & അർച്ചന',
-    price: '₹20',
-    priceNum: 20,
-    descEn: 'Daily peace, health, and family prosperity at the lotus feet of the deity.',
-    descMl: 'കുടുംബൈശ്വര്യത്തിനും ആയുരാരോഗ്യത്തിനും ഭഗവാന്റെ പാദങ്ങളിൽ സമർപ്പിക്കുന്ന നിത്യ വഴിപാട്.',
-    image: require('../../assets/images/temple/offerings/archana_pushpanjali.jpg'),
-  },
-  {
-    id: '2',
-    category: 'daily',
-    nameEn: 'Muttarukkal Pooja',
-    nameMl: 'മുട്ടറുക്കൽ പൂജ',
-    price: '₹30',
-    priceNum: 30,
-    descEn: 'Removal of obstacles, negative energies, and evil eye.',
-    descMl: 'കർമ്മതടസ്സങ്ങളും ഗ്രഹദോഷങ്ങളും ദൃഷ്ടിദോഷങ്ങളും നീങ്ങുന്നതിനായുള്ള നാളികേരം മുട്ടറുക്കൽ.',
-    image: require('../../assets/images/temple/offerings/archana_pushpanjali.jpg'),
-  },
-  {
-    id: '3',
-    category: 'homam',
-    nameEn: 'Maha Ganapathy Homam',
-    nameMl: 'മഹാ ഗണപതി ഹോമം',
-    price: '₹350',
-    priceNum: 350,
-    descEn: 'Auspicious dawn fire oblation invoking Lord Ganesha for career & life growth.',
-    descMl: 'സർവ്വ വിഘ്നങ്ങളും നീങ്ങി കാര്യവിജയത്തിനായി അതിരാവിലെ നടത്തുന്ന വിശേഷാൽ അഗ്നിഹോമം.',
-    image: require('../../assets/images/temple/offerings/ganapathy_homam.jpg'),
-  },
-  {
-    id: '4',
-    category: 'abhishekam',
-    nameEn: 'Palabhishekam & Bhasmam',
-    nameMl: 'പാലഭിഷേകം & ഭസ്മം',
-    price: '₹50',
-    priceNum: 50,
-    descEn: 'Sacred cow milk bath and holy vibhuti shower purifying the soul.',
-    descMl: 'മനോശാന്തിക്കും പാപമോചനത്തിനുമായി ഭഗവാന് പശുവിൻപാലും ഭസ്മവും കൊണ്ടുള്ള അഭിഷേകം.',
-    image: require('../../assets/images/temple/offerings/palabhishekam.jpg'),
-  },
-  {
-    id: '5',
-    category: 'special',
-    nameEn: 'Chuttuvilakku Deepam',
-    nameMl: 'ചുറ്റുവിളക്ക് ദീപം',
-    price: '₹500',
-    priceNum: 500,
-    descEn: 'Illuminating hundreds of sacred oil lamps around the sanctum walls.',
-    descMl: 'സന്ധ്യാസമയത്ത് ക്ഷേത്ര മതിൽക്കെട്ടിൽ നൂറുകണക്കിന് ചിരാതുകളിൽ തിരി തെളിയിക്കുന്ന ദീപാരാധന.',
-    image: require('../../assets/images/temple/gallery/peacock_diya_decor.jpg'),
-  },
-  {
-    id: '6',
-    category: 'special',
-    nameEn: 'Thulabharam Vazhipadu',
-    nameMl: 'തുലാഭാരം വഴിപാട്',
-    price: '₹501',
-    priceNum: 501,
-    descEn: 'Weighing ritual with plantains, jaggery, or coconuts for fulfilled vows.',
-    descMl: 'നേർച്ചയായി ഭക്തരുടെ ശരീരഭാരത്തിന് തുല്യമായി കദളിപ്പഴം, ശർക്കര എന്നിവ സമർപ്പിക്കൽ.',
-    image: require('../../assets/images/temple/offerings/thulabharam.jpg'),
-  },
-  {
-    id: '7',
-    category: 'annadanam',
-    nameEn: 'Annadanam Contribution',
-    nameMl: 'അന്നദാന സമർപ്പണം',
-    price: '₹1000',
-    priceNum: 1000,
-    descEn: 'Feeding devotees on auspicious pooja and festival days.',
-    descMl: 'ക്ഷേത്രത്തിലെത്തുന്ന ഭക്തജനങ്ങൾക്ക് അന്നം നൽകുന്ന മഹാപുണ്യത്തിൽ പങ്കാളിയാകൂ.',
-    image: require('../../assets/images/temple/festivals/thaipusam.jpg'),
-  },
-];
 
 export default function TabOfferingsScreen() {
   const { isMalayalam } = useLanguage();
@@ -158,9 +74,7 @@ export default function TabOfferingsScreen() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Selected Offerings Cart: map of offeringId -> quantity
-  const [cart, setCart] = useState<{ [key: string]: number }>({
-    '1': 1, // Default 1 Pushpanjali
-  });
+  const [cart, setCart] = useState<{ [key: string]: number }>({});
 
   const [devoteeName, setDevoteeName] = useState('');
   const [selectedStar, setSelectedStar] = useState(NAKSHATRAS[0]);
@@ -259,7 +173,7 @@ ${itemsSummary}
 ----------------------------------------
 Swami Saranam! Please verify slot availability & share UPI confirmation details.`;
 
-    Linking.openURL(`https://wa.me/+919400788358?text=${encodeURIComponent(message)}`);
+    Linking.openURL(`https://wa.me/${TEMPLE_PHONE_INTL}?text=${encodeURIComponent(message)}`).catch(() => {});
   };
 
   return (
@@ -293,14 +207,7 @@ Swami Saranam! Please verify slot availability & share UPI confirmation details.
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.categoryScroll}
         >
-          {[
-            { id: 'all', ml: 'എല്ലാം', en: 'All' },
-            { id: 'daily', ml: 'നിത്യപൂജകൾ', en: 'Daily' },
-            { id: 'homam', ml: 'ഹോമങ്ങൾ', en: 'Homams' },
-            { id: 'abhishekam', ml: 'അഭിഷേകം', en: 'Abhishekam' },
-            { id: 'special', ml: 'പ്രത്യേകം', en: 'Special' },
-            { id: 'annadanam', ml: 'അന്നദാനം', en: 'Annadanam' },
-          ].map((cat) => {
+          {OFFERING_CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
               <TouchableOpacity

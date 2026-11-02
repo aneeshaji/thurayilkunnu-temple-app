@@ -66,6 +66,7 @@ interface TempleLogoProps {
   showChant?: boolean;
   onPress?: () => void;
   style?: any;
+  variant?: 'light' | 'dark';
 }
 
 export function TempleLogo({
@@ -73,22 +74,25 @@ export function TempleLogo({
   showChant = true,
   onPress,
   style,
+  variant = 'light',
 }: TempleLogoProps) {
   const { isMalayalam } = useLanguage();
 
   const isHeader = size === 'header';
   const isReceipt = size === 'receipt';
   const isCard = size === 'card';
+  const isLight = variant === 'light';
 
   const badgeSize = isHeader ? 36 : isReceipt ? 48 : isCard ? 42 : 48;
   const velSize = isHeader ? 26 : isReceipt ? 34 : isCard ? 30 : 34;
 
   const content = (
     <View style={[styles.container, style]}>
-      {/* Sacred Vel Emblem Badge (matching website .logo-emblem-badge) */}
+      {/* Sacred Vel Emblem Badge */}
       <View
         style={[
           styles.emblemBadge,
+          isLight && styles.emblemBadgeLight,
           {
             width: badgeSize,
             height: badgeSize,
@@ -99,12 +103,13 @@ export function TempleLogo({
         <SacredVelEmblem size={velSize} />
       </View>
 
-      {/* Regal Typography Block (matching website .logo-text-block) */}
+      {/* Regal Typography Block */}
       <View style={styles.textBlock}>
         <View style={styles.titleRow}>
           <Text
             style={[
               styles.titleMain,
+              isLight && styles.titleMainLight,
               isHeader && styles.titleMainHeader,
               isReceipt && styles.titleMainReceipt,
             ]}
@@ -115,6 +120,7 @@ export function TempleLogo({
           <Text
             style={[
               styles.titleSree,
+              isLight && styles.titleSreeLight,
               isHeader && styles.titleSreeHeader,
             ]}
           >
@@ -125,6 +131,7 @@ export function TempleLogo({
         <Text
           style={[
             styles.subtitle,
+            isLight && styles.subtitleLight,
             isHeader && styles.subtitleHeader,
           ]}
           numberOfLines={1}
@@ -135,7 +142,7 @@ export function TempleLogo({
         </Text>
 
         {showChant && !isHeader && (
-          <Text style={styles.chantTag}>
+          <Text style={[styles.chantTag, isLight && styles.chantTagLight]}>
             {isMalayalam
               ? '✦ ഹരോ ഹര • ഹര ഹര ✦'
               : '✦ HARO HARA • HARA HARA ✦'}
@@ -174,6 +181,12 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
   },
+  emblemBadgeLight: {
+    backgroundColor: '#FFFBEB',
+    borderColor: '#F59E0B',
+    shadowColor: '#D97706',
+    shadowOpacity: 0.2,
+  },
   textBlock: {
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -190,6 +203,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     letterSpacing: 0.5,
   },
+  titleMainLight: {
+    color: '#1C1917',
+  },
   titleMainHeader: {
     fontSize: 14,
   },
@@ -203,6 +219,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textTransform: 'uppercase',
   },
+  titleSreeLight: {
+    color: '#B45309',
+  },
   titleSreeHeader: {
     fontSize: 10,
   },
@@ -213,6 +232,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1.5,
     textTransform: 'uppercase',
     marginTop: 1,
+  },
+  subtitleLight: {
+    color: '#D97706',
   },
   subtitleHeader: {
     fontSize: 8,
@@ -226,5 +248,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginTop: 2,
     opacity: 0.9,
+  },
+  chantTagLight: {
+    color: '#B45309',
   },
 });

@@ -10,7 +10,7 @@ import { TempleLogo } from '@/components/TempleLogo';
 function HeaderLogo() {
   return (
     <View style={styles.headerLogoContainer}>
-      <TempleLogo size="header" showChant={false} />
+      <TempleLogo size="header" showChant={false} variant="light" />
     </View>
   );
 }
@@ -23,7 +23,7 @@ function HeaderLanguageButton() {
       onPress={toggleLanguage}
       activeOpacity={0.8}
     >
-      <Globe size={13} color="#FCD34D" />
+      <Globe size={13} color="#D97706" />
       <Text style={styles.headerLangText}>
         {language === 'ml' ? 'English' : 'മലയാളം'}
       </Text>
@@ -32,22 +32,35 @@ function HeaderLanguageButton() {
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
   const { isMalayalam } = useLanguage();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#F59E0B',
-        tabBarInactiveTintColor: '#A8A29E',
+        tabBarActiveTintColor: '#D97706',
+        tabBarInactiveTintColor: '#78716C',
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '700',
+        },
         tabBarStyle: {
-          backgroundColor: '#1C1917',
-          borderTopColor: 'rgba(217, 119, 6, 0.25)',
+          backgroundColor: '#FFFFFF',
+          borderTopColor: '#F0EBE1',
+          borderTopWidth: 1,
           paddingBottom: 6,
           height: 60,
+          elevation: 6,
+          shadowColor: '#000000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.04,
+          shadowRadius: 6,
         },
         headerStyle: {
-          backgroundColor: '#1C1917',
+          backgroundColor: '#FFFFFF',
+          borderBottomWidth: 1,
+          borderBottomColor: '#F0EBE1',
+          elevation: 0,
+          shadowOpacity: 0,
         },
         headerTitle: '',
         headerLeft: () => <HeaderLogo />,
@@ -94,17 +107,17 @@ const styles = StyleSheet.create({
   headerLangBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(217, 119, 6, 0.35)',
+    backgroundColor: '#FFFBEB',
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 14,
     marginRight: 14,
     gap: 5,
     borderWidth: 1,
-    borderColor: 'rgba(252, 211, 77, 0.4)',
+    borderColor: '#FDE68A',
   },
   headerLangText: {
-    color: '#FCD34D',
+    color: '#B45309',
     fontSize: 11,
     fontWeight: '800',
   },
